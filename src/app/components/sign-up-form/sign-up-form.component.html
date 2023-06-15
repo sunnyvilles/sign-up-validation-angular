@@ -1,0 +1,60 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<h1>Create a new User</h1>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="signUpForm" (submit)="createUser()">
+
+            <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="firstName">
+                <mat-error *ngIf="firstName?.hasError('required')">{{getRequiredFieldErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" formControlName="lastName">
+                <mat-error *ngIf="lastName?.hasError('required')">{{getRequiredFieldErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="example@xyz.com" formControlName="email" type="email">
+                <mat-error
+                    *ngIf="signUpForm.get('email')?.hasError('required')">{{getRequiredFieldErrorMessage()}}</mat-error>
+                <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+                    Email is not valid
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" formControlName="password" type="password">
+                <mat-error
+                    *ngIf="signUpForm.get('password')?.hasError('required')">{{getRequiredFieldErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <div class="password-errors">
+                <mat-list role="list" *ngIf="signUpForm?.touched || signUpForm?.dirty">
+                    <mat-list-item role="listitem"><mat-error
+                            *ngIf="signUpForm.get('password')?.hasError('minlength')">Password has to be at least 8
+                            characters long!</mat-error></mat-list-item>
+                    <mat-list-item role="listitem"><mat-error
+                            *ngIf="signUpForm?.hasError('hasFirstAndLastNames')">Password
+                            must not contain first and
+                            last
+                            name</mat-error></mat-list-item>
+                    <mat-list-item role="listitem"><mat-error
+                            *ngIf="signUpForm?.hasError('hasNoUpperAndLowerCase')">Password should have both upper
+                            and
+                            lower case characters</mat-error></mat-list-item>
+                </mat-list>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]='!signUpForm.valid'>
+                Sign up
+            </button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

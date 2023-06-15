@@ -1,0 +1,8 @@
+{
+    "/": {
+        "target": "https://demo-api.now.sh",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": false
+    }
+}
