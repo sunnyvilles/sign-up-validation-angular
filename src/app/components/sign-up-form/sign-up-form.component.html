@@ -34,7 +34,7 @@
                     *ngIf="signUpForm.get('password')?.hasError('required')">{{getRequiredFieldErrorMessage()}}</mat-error>
             </mat-form-field>
 
-            <div class="password-errors">
+            <div id="password-errors">
                 <mat-list role="list" *ngIf="signUpForm?.touched || signUpForm?.dirty">
                     <mat-list-item role="listitem"><mat-error
                             *ngIf="signUpForm.get('password')?.hasError('minlength')">Password has to be at least 8

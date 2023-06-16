@@ -17,10 +17,13 @@ export const passwordValidator: ValidatorFn = (control: AbstractControl): Valida
   const upperCaseCheck = /[A-Z]/.test(password);
   const lowerCaseCheck = /[a-z]/.test(password);
 
-  let errors: IError = {};
+  const errors: IError = {};
 
-  if (password.includes(firstName) || password.includes(lastName)) errors['hasFirstAndLastNames'] = true;
+  if (hasSubstring(password, firstName) || hasSubstring(password, lastName)) errors['hasFirstAndLastNames'] = true;
   if (!(upperCaseCheck && lowerCaseCheck)) errors['hasNoUpperAndLowerCase'] = true;
 
-  return Object.keys(errors).length > 0 ? errors : null;;
+  return Object.keys(errors).length > 0 ? errors : null;
 };
+
+// todo:move to service 
+const hasSubstring = (source: string, target: string): boolean => source.toLocaleLowerCase().includes(target.toLocaleLowerCase())

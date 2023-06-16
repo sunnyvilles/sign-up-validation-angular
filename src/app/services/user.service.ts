@@ -16,16 +16,16 @@ const httpOptions = {
 })
 
 export class UserService {
-  private baseUrl: string = 'https://demo-api.now.sh/users/';
+  private baseUrl = 'https://demo-api.now.sh/users/';
 
   constructor(private http: HttpClient) { }
 
   postUser(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.baseUrl, user, httpOptions).pipe(
-      catchError(this.onError));;
+      catchError(this.onError));
   }
 
-  onError(err: any): Observable<any> {
+  onError(err: any): Observable<never> {
     const message = 'error while getting the data: ' + err.status;
     return throwError(() => message);
   }

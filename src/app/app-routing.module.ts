@@ -6,7 +6,7 @@ import { NotificationComponent } from './components/notification/notification.co
 const routes: Routes = [
   { path: '', redirectTo: '/sign-up', pathMatch: 'full' },
   { path: 'sign-up', component: SignUpFormComponent },
-  { path: 'notify', component: NotificationComponent },
+  { path: 'notify/:type/:message', component: NotificationComponent },
 ];
 
 @NgModule({
