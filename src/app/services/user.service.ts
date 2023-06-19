@@ -4,24 +4,17 @@ import { Observable, catchError, throwError } from 'rxjs';
 
 import { IUser } from '../models/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  private baseUrl = 'https://demo-api.now.sh/users/';
+  private baseUrl = 'https://demo-api.vercel.app/users';
 
   constructor(private http: HttpClient) { }
 
   postUser(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>(this.baseUrl, user, httpOptions).pipe(
+    return this.http.post<IUser>(this.baseUrl, user).pipe(
       catchError(this.onError));
   }
 

@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/*"
+  to = "https://demo-api.vercel.app/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
